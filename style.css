@@ -1,0 +1,19 @@
+.header {
+    height: 45px;
+    width: auto;
+    background-color: black;
+    border-radius: 5px;
+    border-width: 5px;
+}
+
+.videolist {
+    height: auto;
+    min-height: 500px;
+    border-radius: 5px;
+    border-width: 5px;
+    background-color: black;
+}
+
+.main {
+    background-color: rgb(32, 32, 32);
+}
