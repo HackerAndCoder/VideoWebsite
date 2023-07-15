@@ -7,6 +7,23 @@ def debug(contents):
     if debugging:
         print(f'[DEBUG] {contents}')
 
+def add_video_to_video_list_file(id, info):
+    to_write = {id: info}
+    with open('video_index.yml', 'a') as f:
+        f.write(yaml.dump(yaml.load(to_write, yaml.Loader)))
+
+def get_video_info(id):
+    with open('video_index.yml') as f:
+        contents = yaml.load(f.read(), yaml.SafeLoader)
+    if not id in contents.keys():
+        return None
+    return contents[id]
+
+def get_video_file_path(id):
+    with open(os.path.join('video', str(id), 'video.mp4'), 'rb') as f:
+        contents = f.read()
+    return contents
+
 def add_video(video, user):
     if not type(user) == User:
         Exception('Argument \'user\' for function add_video() is not an instance of class User')
@@ -32,28 +49,18 @@ def add_video(video, user):
 
     return True
 
-def get_video_id():
-    with open('last_video_id.txt') as f:
-        id = int(f.read())
-    return id
-
-def set_video_id(id):
-    with open('last_video_id.txt', 'w') as f:
-        f.write(str(id))
-
-def increment_video_id():
-    set_video_id(get_video_id() + 1)
-    return True
-
-def get_next_id():
-    increment_video_id()
-    return get_video_id()
-
 def is_user(user):
-    with open('users.txt') as f:
-        if user.username in f.readlines():
-            return True
+    lines = get_all_users()
+    if user.username in lines:
+        return True
     return False
+
+def get_all_users():
+    with open('users.txt') as f:
+        lines = f.readlines()
+    for i in range(len(lines)):
+        lines[i] = lines[i].strip()
+    return lines
 
 def add_user_to_file(user):
     with open('users.txt', 'a') as f:
@@ -73,11 +80,11 @@ def set_subscribers(username, num_subs):
         f.write(yaml.dump(contents))
     return True
 
-def create_user(user):
+def add_user(user):
     if len(user.username) < 3:
         Exception(f'User\'s name {user.username} cannot be shorter than 3 characters')
     if is_user(user):
-        Exception(f'user {user.username} already exists')
+        raise Exception(f'user {user.username} already exists')
     add_user_to_file(user)
     with open(os.path.join(os.getcwd(), 'users', str(user.username) + '.yml'), 'w') as f:
         f.write(yaml.dump(user.get_dump_output()))
@@ -86,9 +93,10 @@ def create_user(user):
 def get_user(username):
     with open('users.txt') as f:
         if not str(username) in f.readlines():
-            Exception(f'No user with name {username}')
-    with open(os.path.join('users', username + '.yml')):
-        contents = yaml.load(f.read())
+            # Exception(f'No user with name {username}')
+            return False
+    with open(os.path.join('users', username + '.yml')) as f:
+        contents = yaml.load(f.read(), yaml.Loader)
 
     user = User()
     user.load_from_dump(contents)
@@ -124,3 +132,6 @@ class User:
         self.password = dump['password']
         self.subscribers = dump['subscribers']
         self.videos = dump['videos']
+
+def get_videos_from_title_contains(search_text):
+    return []

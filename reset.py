@@ -13,6 +13,9 @@ def reset():
 
     with open('last_video_id.txt', 'w') as f:
         f.write('0')
+    
+    with open('video_index.yml', 'w') as f:
+        f.write('')
 
     print('reset base video id')
     print('done')

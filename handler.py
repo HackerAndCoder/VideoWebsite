@@ -19,14 +19,33 @@ def get_next_id():
     return get_video_id()
 
 def upload_video(video : Video, user):
+    video.id = get_next_id()
     info_handler.add_video(video, user)
+
+def create_a_user(name, password):
+    user = info_handler.User(name, password)
+    if info_handler.is_user(user):
+        return False
+    else:
+        info_handler.add_user(user)
+        return True
+
+def get_user(username):
+    user = info_handler.get_user(username)
+    if user:
+        return user
+    else:
+        return False
+
+def get_videos_title_include(search_text):
+    return info_handler.get_videos_from_title_contains(search_text)
 
 if __name__ == '__main__':
     # test upload
     with open(os.path.join('to_upload', 'test.mp4'), 'rb') as f:
-        user = info_handler.create_user(info_handler.User())
+        try:
+            info_handler.add_user(info_handler.User())
+        except:
+            print('user already exists. Passing...')
+        user = info_handler.get_user('generateduser')
         video_data = f.read()
-        print(f'Video_data size {video_data.__sizeof__()}')
-        for i in range(10):
-            upload_video(Video('test', video_data, get_next_id()), user)
-            print(f'Uploaded video number {i}')

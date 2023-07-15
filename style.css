@@ -1,7 +1,7 @@
 .header {
     height: 45px;
-    width: auto;
-    background-color: black;
+    width: 100%;
+    background-color: rgb(20, 20, 20);
     border-radius: 5px;
     border-width: 5px;
 }
@@ -11,9 +11,90 @@
     min-height: 500px;
     border-radius: 5px;
     border-width: 5px;
-    background-color: black;
+    background-color: rgb(20, 20, 20);
 }
 
 .main {
     background-color: rgb(32, 32, 32);
+}
+
+#logo {
+    width: max-content;
+    display: block;
+    max-height: 45px;
+    float: left;
+    border-color: white;
+    border-width: 10px;
+}
+
+#search {
+    display: block;
+    width: 40%;
+    height: 45px;
+    padding-left: 10%;
+    float: left;
+}
+
+#searchbar {
+    height: 80%;
+    width: 100%;
+    border-radius: 10px;
+    background-color: rgb(46, 45, 45);
+    border-color: rgb(31, 31, 31);
+    border-width: 5px;
+    margin: 5px;
+}
+
+#searchbar:focus {
+    background-color: white;
+}
+
+#spacer {
+    height: 10px;
+    display: block;
+}
+
+#logo-container {
+    min-width: 30%;
+}
+
+.social-link {
+    max-width: 30%;
+    float: right;
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border: 5px;
+    border-width: 3px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: rgb(59, 59, 255);
+    margin-top: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+    border-color: rgb(226, 226, 226);
+    font-family: 'Courier New', Courier, monospace;
+    font-size: small;
+    background-color: rgb(48, 47, 47);
+}
+
+#social-account {
+    display: none;
+}
+
+a {
+    display: block;
+}
+
+
+@media screen and (max-width: 550px) and (min-width: 1px) {
+    #logo {
+        width: 0px;
+        height: 0px;
+    }
+
+    #search {
+        padding-left: 0px;
+        max-width: 60%;
+    }
 }
