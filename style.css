@@ -82,6 +82,10 @@
     display: none;
 }
 
+#social-noaccount {
+    display: block;
+}
+
 a {
     display: block;
 }
