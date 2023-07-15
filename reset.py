@@ -1,23 +1,33 @@
 import os, shutil
 
 def reset():
-    shutil.rmtree('users')
+    try:
+        shutil.rmtree('users')
+        print('Removed users')
+    except:
+        print('No folder \'users\', making...')
+
     with open('users.txt', 'w') as f:
         f.write('')
-    print('Removed users')
+    
     os.mkdir('users')
 
-    shutil.rmtree('videos')
-    print('Removed all videos')
+    try:
+        shutil.rmtree('videos')
+        print('Removed all videos')
+    except:
+        print('No folder \'videos\', making...')
+
     os.mkdir('videos')
 
     with open('last_video_id.txt', 'w') as f:
         f.write('0')
+    print('Reset video ids')
     
     with open('video_index.yml', 'w') as f:
         f.write('')
+    print('Cleared video index')
 
-    print('reset base video id')
     print('done')
 
 if __name__ == '__main__':
