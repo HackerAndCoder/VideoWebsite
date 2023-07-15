@@ -6,7 +6,7 @@
     border-width: 5px;
 }
 
-.videolist {
+.main {
     height: auto;
     min-height: 500px;
     border-radius: 5px;
@@ -14,7 +14,7 @@
     background-color: rgb(20, 20, 20);
 }
 
-.main {
+body {
     background-color: rgb(32, 32, 32);
 }
 
@@ -56,6 +56,36 @@
 
 #logo-container {
     min-width: 30%;
+}
+
+#signup-form-wrapper {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.signup-form-input {
+    width: 80%;
+    display: block;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.signup-form {
+    display: block;
+    width: 50%;
+    border: 5px solid rgb(71, 71, 71);
+    border-radius: 20px;
+    border-width: 5px;
+}
+
+.signup-text {
+    color: white;
+    width: 100%;
+    display: block;
+    display: flex;
+    justify-content: center;
 }
 
 .social-link {
