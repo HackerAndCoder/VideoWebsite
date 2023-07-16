@@ -1,4 +1,5 @@
-from flask import Flask, render_template
+from flask import Flask, redirect, request
+
 app = Flask(__name__)
 
 def insert_style(document):
@@ -24,8 +25,18 @@ def logo():
         return f.read()
 
 @app.route('/signup.html')
-def signup():
+def return_signup():
     return get_styled_html('signup.html')
+
+@app.route('/login', methods = ['POST'])
+def login():
+    username = request.form['username']
+    password = request.form['password']
+    repeat_password = request.form['repeatpassword']
+    if password == repeat_password:
+        print(f'Created new user {username} with password {password}')
+    print(request.form['username'])
+    return redirect('/')
 
 if __name__ == '__main__':
     app.run(debug=True)

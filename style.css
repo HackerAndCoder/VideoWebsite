@@ -7,15 +7,16 @@
 }
 
 .main {
-    height: auto;
-    min-height: 500px;
-    border-radius: 5px;
+    min-height: 300px;
+    border-radius: 20px;
     border-width: 5px;
     background-color: rgb(20, 20, 20);
+    padding: 20px;
 }
 
 body {
     background-color: rgb(32, 32, 32);
+    min-height: 100%;
 }
 
 #logo {
@@ -64,20 +65,48 @@ body {
     justify-content: center;
 }
 
-.signup-form-input {
-    width: 80%;
-    display: block;
-    padding: 10px;
+.error {
     display: flex;
     justify-content: center;
+    font-family: 'Courier New', Courier, monospace;
+    margin-bottom: 30px;
+    display: none;
+    color: red;
+    padding-left: 20%;
+}
+
+.signup-form-input {
+    width: 33%;
+    display: block;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+    background-color: rgb(41, 39, 39);
+    border-radius: 5px;
+    border: 3px solid rgb(46, 46, 46);
+    margin-left: 33%;
+    margin-bottom: 20px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#submit-button {
+    color: white;
+    width: 35%;
+}
+
+#submit-button:hover {
+    background-color: rgb(66, 65, 65);
 }
 
 .signup-form {
     display: block;
     width: 50%;
-    border: 5px solid rgb(71, 71, 71);
-    border-radius: 20px;
+    border: 5px solid rgb(48, 47, 47);
+    background-color: rgb(27, 27, 27);
+    border-radius: 30px;
     border-width: 5px;
+    padding: 30px;
 }
 
 .signup-text {
@@ -86,6 +115,7 @@ body {
     display: block;
     display: flex;
     justify-content: center;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 .social-link {
@@ -121,7 +151,7 @@ a {
 }
 
 
-@media screen and (max-width: 550px) and (min-width: 1px) {
+@media screen and (max-width: 700px) and (min-width: 370px) {
     #logo {
         width: 0px;
         height: 0px;
@@ -130,5 +160,11 @@ a {
     #search {
         padding-left: 0px;
         max-width: 60%;
+    }
+}
+
+@media screen and (min-width: 0px) and (max-width: 369px) {
+    body {
+        display: none;
     }
 }

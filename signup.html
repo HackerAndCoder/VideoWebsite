@@ -25,12 +25,54 @@
             <div id="signup-form-wrapper">
                 <div class="signup-form">
                     <h1 class="signup-text">Sign up</h1>
-                    <input type="text" placeholder="Username" id="username" class="signup-form-input">
-                    <input type="password" placeholder="Password" id="password" class="signup-form-input">
-                    <input type="password" placeholder="Repeat password" id="repeatpassword" class="signup-form-input">
+                    <div id="spacer"></div>
+                    <h3 id="usernametooshort" class="error">Your username has to be more than 2 characters long.</h3>
+                    <h3 id="passwordtooshort" class="error">Your password has to be more than 5 characters long.</h3>
+                    <h3 id="passwordnomatch" class="error">Your password and repeat password have to match.</h3>
+                    <form method="post" action="http://localhost:5000/login" id="form">
+                        <input type="text" placeholder="Username" name="username" class="signup-form-input" id="username">
+                        <input type="password" placeholder="Password" name="password" class="signup-form-input" id="password">
+                        <input type="password" placeholder="Repeat password" name="repeatpassword" class="signup-form-input" id="repeatpassword">
+                        <input class="signup-form-input" id="submit-button" type="submit" value="Make my account!">
+                    </form>
                 </div>
             </div>
         </div>
+        <script>
+            let loginForm = document.getElementById("form");
+            loginForm.addEventListener("submit", (e) => {
+                let username = document.getElementById("username");
+                let password = document.getElementById("password");
+                let repeatpassword = document.getElementById("repeatpassword");
 
+                let passwordtooshort = document.getElementById("passwordtooshort");
+                let usernametooshort = document.getElementById("usernametooshort");
+                let passwordnomatch = document.getElementById("passwordnomatch");
+
+                passwordtooshort.style.display = "none"
+                usernametooshort.style.display = "none"
+                passwordnomatch.style.display = "none"
+
+                if (!password.value == repeatpassword) {
+                    e.preventDefault();
+                    passwordnomatch.style.display = "block";
+                    return;
+                }
+                
+                if (password.value.length < 6) {
+                    e.preventDefault();
+                    passwordtooshort.style.display = "block";
+                    console.log("The length of the password is less than 6");
+                    return;
+                }
+
+                if (username.value.length < 3) {
+                    usernametooshort.style.display = "block";
+                    console.log("The length of the username is less than 3");
+                    e.preventDefault();
+                    return;
+                }
+            })
+        </script>
     </body>
 </html>
